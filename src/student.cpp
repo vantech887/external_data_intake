@@ -4,33 +4,32 @@
 #include <limits>
 #include <sstream>
 #include <vector>
-
+#include "student.h";
 
 using namespace std;
 
-int main()
+vector<STUDENT> studentData;
+
+vector<STUDENT> parser()
 {
-    string line;
+    string line, xline;
     ifstream studentFile("../data/input.csv");
     if (studentFile.is_open())
     {
+        getline(studentFile, xline);
         while(getline(studentFile, line))
         {
-            studentFile.ignore(numeric_limits<streamsize>::max(), '\n');
-            vector<string> sData;
-
+            vector<string> tokenData;
             stringstream ss(line);
             string dataChunk;
             while (getline(ss, dataChunk, ','))
             {
-                sData.push_back(dataChunk);
-                cout << sData[0];
+                tokenData.push_back(dataChunk);
             }
             
         }
         studentFile.close();
     } else cout << "unable to open file";
  
-
-    return 0;
+    return studentData;
 }
